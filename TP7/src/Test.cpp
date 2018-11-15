@@ -13,7 +13,7 @@
 using namespace std;
 
 
-void test_1_StackExt_FindMin() {/*
+void test_1_StackExt_FindMin() {
 	StackExt<int> s1;
 	// Teste ao empty()
 	ASSERT_EQUAL(true, s1.empty());
@@ -71,7 +71,7 @@ void test_1_StackExt_FindMin() {/*
 	}
 	// Verifica se executa em TEMPO CONSTANTE
 	// NOTA: o parametro com valor 10 significa que sao considerados constantes valores no intervalo [-10, 10]
-	ASSERT_EQUAL(true, isConstant(elapsedTime, size, 10));*/
+	ASSERT_EQUAL(true, isConstant(elapsedTime, size, 10));
 }
 
 void test_2a_ConstructorCliente(){
