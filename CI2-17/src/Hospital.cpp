@@ -110,7 +110,8 @@ void Hospital::processPatient(unsigned codM1) {
 	Patient p(0, "");
 	for(; it != doctors.end(); it++){
 		if (it->getCode() == codM1){
-			p = it->removeNextPatient();
+			if(it->getPatients().size() > 0)
+				p = it->removeNextPatient();
 			break;
 		}
 	}
