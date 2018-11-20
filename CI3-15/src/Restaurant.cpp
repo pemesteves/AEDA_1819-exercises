@@ -59,11 +59,10 @@ const list<Dish*>& Restaurant::getDrying() const {
  * Adds a number of dishes of a collection/type to the respective clean stack.
  */
 void Restaurant::addDishes(unsigned int n, string collection, TypeOfDish type) {
-	stack<Dish*>* s = new stack<Dish*>;
-	*s = getCleanDishStack(collection, type);
+	stack<Dish*>& s = getCleanDishStack(collection, type);
 	Dish* d = new Dish(collection, type);
 	while(n > 0){
-		s->push(d);
+		s.push(d);
 		n--;
 	}
 }
@@ -137,9 +136,24 @@ void Restaurant::storeDryDishes(string collection, TypeOfDish type) {
  * Throws NotEnoughDishesException when there are not enough clean plates of the collection.
  */
 void Restaurant::setupTable(vector<Table>::size_type idx, string collection) {
+	if (idx < 0 || idx >= tables.size())
+		return;
 
-	// TODO
+	if (!tables[idx].empty())
+		throw TableNotReadyException();
 
+	stack<Dish*>& s = getCleanDishStack(collection, Plate);
+
+	if (s.size() < tables[idx].size())
+		throw NotEnoughDishesException();
+
+	vector<Dish*> v;
+	for(size_t i = 0; i < tables[idx].size(); i++){
+		v.push_back(s.top());
+		s.pop();
+	}
+
+	tables[idx].putOn(v);
 }
 
 /**
@@ -148,9 +162,21 @@ void Restaurant::setupTable(vector<Table>::size_type idx, string collection) {
  */
 list<Dish*> Restaurant::pickupAndGroupDryDishes() {
 	list<Dish*> dry_grouped;
-
-	// TODO
-
+	string collection;
+	TypeOfDish type;
+	while(!drying.empty()){
+		collection = drying.front()->getCollection();
+		type = drying.front()->getType();
+		dry_grouped.push_back(drying.front());
+		drying.pop_front();
+		for(list<Dish*>::iterator it = drying.begin(); it != drying.end(); it++){
+			if((*it)->getCollection() == collection && (*it)->getType() == type){
+				dry_grouped.push_back(*it);
+				it = drying.erase(it);
+				it--;
+			}
+		}
+	}
 	return dry_grouped;
 }
 
@@ -159,9 +185,25 @@ list<Dish*> Restaurant::pickupAndGroupDryDishes() {
  * Returns the number of stacks that have been updated.
  */
 int Restaurant::storeGroupedDishes(list<Dish*> grouped_dishes) {
+	string collection;
+	TypeOfDish type;
+	int dishStackCounter = 0;
 
-	// TODO
+	list<Dish*>::iterator it= grouped_dishes.begin();
+	for (; it!=grouped_dishes.end() ; it++){
+		collection = (*it)->getCollection();
+		type = (*it)->getType();
+		dishStackCounter++;		// Increment the counter
+		stack<Dish*> & dishesStack = getCleanDishStack(collection,type);	// Get the stack of the right type of dishes
+		while ( ((*it)->getCollection()==collection) && ((*it)->getType()==type)){
+			dishesStack.push(*it);
+			it++;
+			if (it == grouped_dishes.end())
+				break;
+		}
+		it--;	// Assert the iterator
+	}
 
-	return 0;
+	return dishStackCounter;
 }
 

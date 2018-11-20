@@ -8,7 +8,7 @@ using namespace std;
 
 // Restaurant::addDishes()
 void test_A_() {
-/*
+
 	stack<Dish*> st1;
 	st1.push(new Dish("Spring", Dessert));
 	st1.push(new Dish("Spring", Dessert));
@@ -38,7 +38,7 @@ void test_A_() {
 	ASSERT_EQUAL(5, r.getCleanDishStack("Asian", Bowl).size());
 
 	ASSERT_EQUAL(4, r.getCleanDishStack("Asian", Plate).size());
-*/
+
 }
 
 // Restaurant::washDish()
@@ -179,7 +179,7 @@ void test_D_() {
 
 // Restaurant::setupTable()
 void test_E_() {
-/*
+
 	stack<Dish*> st1;
 	st1.push(new Dish("Asian", Plate));
 	st1.push(new Dish("Asian", Plate));
@@ -238,12 +238,12 @@ void test_E_() {
 	ASSERT_EQUAL(3, r.getCleanDishStack("Asian", Plate).size());
 
 	r.setupTable(2, "White");
-*/
+
 }
 
 
 // Restaurant::pickupAndGroupDryDishes()
-void test_F_() {/*
+void test_F_() {
 
 	list<Dish*> drying;
 	drying.push_back(new Dish("Spring", Bowl));
@@ -295,11 +295,11 @@ void test_F_() {/*
 	Restaurant r2;
 	r2.pickupAndGroupDryDishes();
 	ASSERT_EQUAL(0, r2.getDrying().size());
-*/
+
 }
 
 // Restaurant::storeGroupedDishes()
-void test_G_() {/*
+void test_G_() {
 
 	stack<Dish*> st1;
 	st1.push(new Dish("Asian", Plate));
@@ -343,7 +343,7 @@ void test_G_() {/*
 	ASSERT_EQUAL(1, r.getCleanDishStack("Spring", Plate).size());
 	ASSERT_EQUAL(4, r.getCleanDishStack("White", Dessert).size());
 	ASSERT_EQUAL(2, r.getCleanDishStack("Spring", Dessert).size());
-*/
+
 }
 
 void runAllTests(int argc, char const *argv[]){
