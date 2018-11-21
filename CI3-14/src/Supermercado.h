@@ -49,7 +49,7 @@ public:
 	void popItem(){ if(!itens.empty()) itens.pop(); }
 	void pushItem(const Item& umItem){ itens.push(umItem); }
 	bool empty() const{ return itens.empty(); }
-	//int novoItem(const Item& umItem);
+	int novoItem(const Item& umItem);
 };
 
 class Cliente {
@@ -75,7 +75,7 @@ public:
 	int trocarItem(Item& novoItem);
 	void organizarCestos();
 	vector<string> contarItensPorTipo();
-	//int novoItem(const Item& umItem);
+	int novoItem(const Item& umItem);
 };
 
 class Supermercado {
@@ -90,8 +90,15 @@ public:
 	queue<Cliente> getFilaNormal() const { return filaNormal; }
 	queue<Cliente> getFilaPrioritaria() const { return filaPrioritaria; }
 
-	//int novoCliente(Cliente& umCliente);
-	//Cliente sairDaFila(string umNomeDeCliente);
+	int novoCliente(Cliente& umCliente);
+	Cliente sairDaFila(string umNomeDeCliente);
+
+	class ClienteInexistente{
+		string nome;
+	public:
+		ClienteInexistente(string nome){this->nome = nome;}
+		string getNome(){return nome;}
+	};
 };
 
 

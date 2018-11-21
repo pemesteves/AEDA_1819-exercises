@@ -134,7 +134,7 @@ void test_d_contarTiposItens() {
 }
 
 void test_e_novoItem() {
-	/*
+
 	Item i1(1, 3, 3, "melancia", "fruta");
 	Item i2(1, 3, 3, "melao", "fruta");
 	Item i3(1, 3, 3, "maca", "fruta");
@@ -153,11 +153,11 @@ void test_e_novoItem() {
 	joao.addCesto(c);
 
 	ASSERT_EQUAL(2, joao.novoItem(i4));
-	*/
+
 }
 
 void test_f_novoCliente() {
-	/*
+
 	Supermercado jumbo;
 	Item i1(1, 3, 3, "melancia", "fruta");
 	Item i2(1, 3, 3, "melao", "fruta");
@@ -190,10 +190,10 @@ void test_f_novoCliente() {
 	maria.addCesto(c);
 	ASSERT_EQUAL(4, jumbo.novoCliente(joana));
 	ASSERT_EQUAL(2, jumbo.tamanhoFilaNormal());
-	*/
+
 }
 
-void test_g_sairDaFila() {/*
+void test_g_sairDaFila() {
 	Cliente joao("Joao", 30);
 	Cliente maria("Maria", 10);
 	Cliente ana("Ana", 72);
@@ -237,7 +237,7 @@ void test_g_sairDaFila() {/*
 	c1=jumbo.sairDaFila("Ana");
 	ASSERT_EQUAL("Ana",c1.getNome());
 	ASSERT_EQUAL(0,jumbo.tamanhoFilaPrioritaria());
-	*/
+
 }
 
 void runSuite(){

@@ -107,3 +107,89 @@ vector<string> Cliente::contarItensPorTipo(){
 	return v;
 }
 
+int Cesto::novoItem(const Item& umItem){
+	if(umItem.peso + peso > max_peso || umItem.volume + volume > max_volume){
+		return 0;
+	}
+
+	itens.push(umItem);
+	peso += umItem.peso;
+	volume += umItem.volume;
+	return itens.size();
+}
+
+int Cliente::novoItem(const Item& umItem){
+	list<Cesto>::iterator it = cestos.begin();
+	for(; it != cestos.end(); it++){
+		if(it->novoItem(umItem) != 0)
+			break;
+	}
+
+	if(it == cestos.end()){
+		Cesto c;
+		c.pushItem(umItem);
+		cestos.push_back(c);
+	}
+
+	return cestos.size();
+}
+
+int Supermercado::novoCliente(Cliente& umCliente){
+	if(umCliente.getIdade() < 65){
+		filaNormal.push(umCliente);
+	}
+	else{
+		if(filaNormal.size() < filaPrioritaria.size()){
+			filaNormal.push(umCliente);
+		}
+		else{
+			filaPrioritaria.push(umCliente);
+		}
+	}
+	return filaNormal.size() + filaPrioritaria.size();
+}
+
+Cliente Supermercado::sairDaFila(string umNomeDeCliente){
+	queue<Cliente> fila = filaNormal;
+	queue<Cliente> novaFila;
+
+	while(!fila.empty()){
+		if (fila.front().getNome() == umNomeDeCliente){
+			Cliente c;
+			c = fila.front();
+			fila.pop();
+			while(!fila.empty()){
+				novaFila.push(fila.front());
+				fila.pop();
+			}
+			filaNormal = novaFila;
+			return c;
+		}
+		novaFila.push(fila.front());
+		fila.pop();
+	}
+	while(!novaFila.empty()){
+		novaFila.pop();
+	}
+	fila = filaPrioritaria;
+
+	while(!fila.empty()){
+			if (fila.front().getNome() == umNomeDeCliente){
+				Cliente c;
+				c = fila.front();
+				fila.pop();
+				while(!fila.empty()){
+					novaFila.push(fila.front());
+					fila.pop();
+				}
+				filaPrioritaria = novaFila;
+				return c;
+			}
+			novaFila.push(fila.front());
+			fila.pop();
+		}
+
+	throw ClienteInexistente(umNomeDeCliente);
+}
+
+
