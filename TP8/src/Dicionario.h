@@ -6,39 +6,43 @@
 
 
 class PalavraSignificado {
-      string palavra;
-      string significado;
+	string palavra;
+	string significado;
 public:
-       PalavraSignificado(string p, string s): palavra(p), significado(s) {}
-       string getPalavra() const { return palavra; }
-       string getSignificado() const { return significado; }
-       void setSignificado(string sig) { significado = sig; }
-       bool operator < (const PalavraSignificado &ps1) const;
-       friend ostream & operator<<(ostream & out, const PalavraSignificado &ps);
-       bool operator ==(const PalavraSignificado &ps1)  const{return palavra == ps1.getPalavra();}
+	PalavraSignificado(string p, string s): palavra(p), significado(s) {}
+	string getPalavra() const { return palavra; }
+	string getSignificado() const { return significado; }
+	void setSignificado(string sig) { significado = sig; }
+	bool operator < (const PalavraSignificado &ps1) const;
+	friend ostream & operator<<(ostream & out, const PalavraSignificado &ps);
+	bool operator ==(const PalavraSignificado &ps1)  const{return palavra == ps1.getPalavra();}
 };
 
 class Dicionario
 {
-      BST<PalavraSignificado> palavras;
+	BST<PalavraSignificado> palavras;
 public:
-      Dicionario(): palavras(PalavraSignificado("","")){};
-      BST<PalavraSignificado> getPalavras() const;
-      void lerDicionario(ifstream &fich);
-      string consulta(string palavra) const;
-      bool corrige(string palavra, string significado);
-      void imprime() const;
+	Dicionario(): palavras(PalavraSignificado("","")){};
+	BST<PalavraSignificado> getPalavras() const;
+	void lerDicionario(ifstream &fich);
+	string consulta(string palavra) const;
+	bool corrige(string palavra, string significado);
+	void imprime() const;
 };
 
 
 // a alterar
 class PalavraNaoExiste
 {
+	string palavraAntes, significadoAntes, palavraApos, significadoApos;
 public:
-	string getPalavraAntes() const { return ""; }
-	string getSignificadoAntes() const { return ""; }
-	string getPalavraApos() const { return ""; }
-	string getSignificadoApos() const { return ""; }
+	PalavraNaoExiste(string pAnt, string sAnt, string pAp, string sAp):
+		palavraAntes(pAnt),	significadoAntes(sAnt), palavraApos(pAp),significadoApos(sAp)
+{}
+	string getPalavraAntes() const { return palavraAntes; }
+	string getSignificadoAntes() const { return significadoAntes;}
+	string getPalavraApos() const { return palavraApos; }
+	string getSignificadoApos() const { return significadoApos; }
 };
 
 

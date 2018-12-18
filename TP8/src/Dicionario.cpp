@@ -37,9 +37,24 @@ void Dicionario::lerDicionario(ifstream &fich)
 
 string Dicionario::consulta(string palavra) const
 {
-	PalavraSignificado p(palavra, ""), p1("", "");
-	if((p1 = palavras.find(p)) == p ){
-		throw PalavraNaoExiste();
+	PalavraSignificado p(palavra, "");
+	PalavraSignificado p1 = palavras.find(p);
+	PalavraSignificado notFound("", "");
+
+	if(p1 == notFound){
+		BSTItrIn<PalavraSignificado> it(palavras);
+		string pAnt = "", sAnt = "";
+		while(!it.isAtEnd() && it.retrieve()<p){
+			pAnt = it.retrieve().getPalavra();
+			sAnt = it.retrieve().getSignificado();
+			it.advance();
+		}
+		string pAp = "", sAp = "";
+		if(!it.isAtEnd()){
+			pAp = it.retrieve().getPalavra();
+			sAp = it.retrieve().getSignificado();
+		}
+		throw PalavraNaoExiste(pAnt, sAnt, pAp, sAp);
 	}
 
 	return p1.getSignificado();
@@ -48,8 +63,17 @@ string Dicionario::consulta(string palavra) const
 
 bool Dicionario::corrige(string palavra, string significado)
 {
-	// a alterer
-	return true;
+	PalavraSignificado p = palavras.find(PalavraSignificado(palavra, ""));
+	if(p == PalavraSignificado("", "")){
+		palavras.insert(PalavraSignificado(palavra, significado));
+		return false;
+	}
+	else{
+		palavras.remove(PalavraSignificado(palavra, ""));
+		p.setSignificado(significado);
+		palavras.insert(p);
+		return true;
+	}
 }
 
 void Dicionario::imprime() const

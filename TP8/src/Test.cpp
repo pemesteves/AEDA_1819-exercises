@@ -52,7 +52,7 @@ void test_1c_ConsultaDicionario(){
 	}
 }
 
-void test_1d_CorrigeDicionario(){/*
+void test_1d_CorrigeDicionario(){
 	ifstream fich;
 	fich.open("dic.txt");
 	ASSERTM("Erro ao Abrir o Ficheiro", fich);
@@ -66,7 +66,7 @@ void test_1d_CorrigeDicionario(){/*
 	BSTItrIn<PalavraSignificado> it(arvPals);
 	it.advance(); it.advance();
 	ASSERT_EQUAL("esquilo", it.retrieve().getPalavra());
-	ASSERT_EQUAL("pequeno mamifero roedor de cauda longa", d1.consulta("esquilo"));*/
+	ASSERT_EQUAL("pequeno mamifero roedor de cauda longa", d1.consulta("esquilo"));
 }
 
 
