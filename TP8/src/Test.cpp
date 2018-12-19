@@ -8,7 +8,7 @@
 
 void test_1a_CriaDicionario(){
 	ifstream fich;
-    fich.open("dic.txt");
+	fich.open("dic.txt");
 	ASSERTM("Erro ao Abrir o Ficheiro", fich);
 	Dicionario d1;
 	d1.lerDicionario(fich);
@@ -70,18 +70,18 @@ void test_1d_CorrigeDicionario(){
 }
 
 
-void test_2a_InicioJogo(){/*
+void test_2a_InicioJogo(){
 	vector<int> pontos;
 	vector<bool> estados;
 	pontos.push_back(1); pontos.push_back(2); pontos.push_back(3);
 	pontos.push_back(4); pontos.push_back(5); pontos.push_back(6); pontos.push_back(7);
 	estados.push_back(true); estados.push_back(false); estados.push_back(false);
 	estados.push_back(false); estados.push_back(false); estados.push_back(true); estados.push_back(false);
-    Jogo jogo1(2, pontos,estados);
-    ASSERT_EQUAL(1, jogo1.getJogo().getRoot().getPontuacao());*/
+	Jogo jogo1(2, pontos,estados);
+	ASSERT_EQUAL(1, jogo1.getJogo().getRoot().getPontuacao());
 }
 
-void test_2b_EscreveJogo(){/*
+void test_2b_EscreveJogo(){
 	vector<int> pontos;
 	vector<bool> estados;
 	pontos.push_back(1); pontos.push_back(2); pontos.push_back(3);
@@ -94,12 +94,12 @@ void test_2b_EscreveJogo(){/*
 	estados.push_back(false); estados.push_back(true); estados.push_back(true);
 	estados.push_back(true); estados.push_back(true); estados.push_back(true);
 	estados.push_back(true); estados.push_back(true); estados.push_back(true);
-    Jogo jogo1(3, pontos,estados);
-    string jogoStr="1-true-0\n2-false-0\n3-false-0\n4-false-0\n5-false-0\n6-true-0\n7-false-0\n8-true-0\n9-true-0\n10-true-0\n11-true-0\n12-true-0\n13-true-0\n14-true-0\n15-true-0\n";
-    ASSERT_EQUAL(jogoStr, jogo1.escreveJogo());*/
+	Jogo jogo1(3, pontos,estados);
+	string jogoStr="1-true-0\n2-false-0\n3-false-0\n4-false-0\n5-false-0\n6-true-0\n7-false-0\n8-true-0\n9-true-0\n10-true-0\n11-true-0\n12-true-0\n13-true-0\n14-true-0\n15-true-0\n";
+	ASSERT_EQUAL(jogoStr, jogo1.escreveJogo());
 }
 
-void test_2c_FazJogada(){/*
+void test_2c_FazJogada(){
 	vector<int> pontos;
 	vector<bool> estados;
 	pontos.push_back(1); pontos.push_back(2); pontos.push_back(3);
@@ -112,12 +112,12 @@ void test_2c_FazJogada(){/*
 	estados.push_back(false); estados.push_back(true); estados.push_back(true);
 	estados.push_back(true); estados.push_back(true); estados.push_back(true);
 	estados.push_back(true); estados.push_back(true); estados.push_back(true);
-    Jogo jogo1(3, pontos,estados);
-    ASSERT_EQUAL(13, jogo1.jogada());
-    ASSERT_EQUAL(8,jogo1.jogada());*/
+	Jogo jogo1(3, pontos,estados);
+	ASSERT_EQUAL(13, jogo1.jogada());
+	ASSERT_EQUAL(8,jogo1.jogada());
 }
 
-void test_2d_MaisVisitado(){/*
+void test_2d_MaisVisitado(){
 	vector<int> pontos;
 	vector<bool> estados;
 	pontos.push_back(1); pontos.push_back(2); pontos.push_back(3);
@@ -134,7 +134,7 @@ void test_2d_MaisVisitado(){/*
 	jogo1.jogada(); jogo1.jogada(); jogo1.jogada();
 	ASSERT_EQUAL(2, jogo1.maisVisitado());
 	jogo1.jogada(); jogo1.jogada(); jogo1.jogada();jogo1.jogada();
-	ASSERT_EQUAL(4, jogo1.maisVisitado());*/
+	ASSERT_EQUAL(4, jogo1.maisVisitado());
 }
 
 
@@ -153,8 +153,8 @@ void runSuite(){
 }
 
 int main(){
-    runSuite();
-    return 0;
+	runSuite();
+	return 0;
 }
 
 

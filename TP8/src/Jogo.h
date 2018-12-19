@@ -8,15 +8,17 @@ using namespace std;
 
 
 class Circulo {
- int pontuacao;
- bool estado;
- int nVisitas;
+	int pontuacao;
+	bool estado;
+	int nVisitas;
 public:
- Circulo(int p=0, bool e=false): pontuacao(p), estado(e), nVisitas(0) {}
- int getPontuacao() const { return pontuacao; }
- bool getEstado() const { return estado; }
- int getNVisitas() const { return nVisitas; }
- friend ostream &operator << (ostream &os, Circulo &c1);
+	Circulo(int p=0, bool e=false): pontuacao(p), estado(e), nVisitas(0) {}
+	int getPontuacao() const { return pontuacao; }
+	bool getEstado() const { return estado; }
+	int getNVisitas() const { return nVisitas; }
+	void mudaEstado() { this->estado = !this->estado;}
+	void incNVisitas() { this->nVisitas++;}
+	friend ostream &operator << (ostream &os, Circulo &c1);
 };
 
 
@@ -29,6 +31,7 @@ public:
 	string escreveJogo();
 	int jogada();
 	int maisVisitado();
+	BinaryTree<Circulo> iniciaJogo(int pos,int niv, vector<int> &pontos, vector<bool> &estados);
 };
 
 
